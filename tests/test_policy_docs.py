@@ -82,9 +82,9 @@ def test_rule_and_client_boundaries():
     for path in (source / "rules").glob("*.py"):
         for node in ast.walk(ast.parse(path.read_text())):
             if isinstance(node, ast.ImportFrom) and node.module:
-                assert node.module.split(".")[0] not in {"db", "repository", "llm", "sample"}
+                assert node.module.split(".")[0] not in {"db", "repository", "llm", "sample", "assist"}
     for path in source.rglob("*.py"):
-        if "llm" in path.parts or path.name == "cli.py":
+        if "llm" in path.parts or "assist" in path.parts or path.name == "cli.py":
             continue
         for node in ast.walk(ast.parse(path.read_text())):
             if isinstance(node, ast.ImportFrom):

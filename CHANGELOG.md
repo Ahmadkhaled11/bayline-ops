@@ -5,7 +5,8 @@ All notable changes to this project are recorded here.
 ## [Unreleased]
 
 ### Added
-- Add a language-model client interface with replay and live clients. Nothing uses it yet.
+- Add a language-model client interface with replay and live clients.
+- Add a message helper starter and topic scoring kit.
 
 ### Changed
 - Refuse writes dated before a shipment's latest record.

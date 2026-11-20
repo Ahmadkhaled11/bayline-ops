@@ -60,6 +60,8 @@ Every command accepts `--db PATH` and `--json`. The database defaults to `BAYLIN
 | `src/bayline/rules` | Pure business rules |
 | `src/bayline/sample` | Repeatable sample data and validation |
 | `src/bayline/llm` | Isolated client interface; operations do not use it |
+| `src/bayline/assist` | Message helper requests |
+| `evals` | Topic scoring and reports |
 | `tests` | Rules, workflows and data checks |
 | `data/authored` | Maintained customer messages |
 | `docs` | Team notes and policies |

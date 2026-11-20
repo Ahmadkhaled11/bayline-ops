@@ -87,3 +87,15 @@ def load_authored(path: Path, shipments, events, customers, as_of):
     if not set(ANCHOR_NUMBERS) <= mentioned:
         raise ValueError(f"Authored messages: line {len(lines)}: every fixed shipment must appear")
     return rows
+
+
+def load_messages(path=None):
+    """Read authored messages without their labels."""
+    from ..config import ROOT
+    from ..models import Message
+
+    path = Path(path) if path is not None else ROOT / "data/authored/messages.jsonl"
+    rows = (json.loads(line) for line in path.read_text(encoding="utf-8-sig").splitlines())
+    return [Message(row["id"], parse_utc(row["received_at"]), row["channel"],
+        row["from_name"], row["from_email"], None, row["subject"], row["body"],
+        row["status"], None, "authored") for row in rows]
