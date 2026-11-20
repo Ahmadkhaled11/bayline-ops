@@ -1,0 +1,27 @@
+{
+  "key": "dce6a80ae8d5798e",
+  "request": {
+    "model": "",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Return one JSON object only, with no code fences, with \"primary_topic\", \"topics\" and \"tracking_numbers\". Topics: status_question, delay, return, damage, address_change, claim_followup, billing, other. Return tracking numbers as a plain list of strings exactly as written in the message."
+      },
+      {
+        "role": "user",
+        "content": "hello\nreturn RET-00051\nfor BYL260473640\nwhen do u come to take it?? i opened it on thursday\nnobody called\nim home sunday after 5"
+      }
+    ],
+    "temperature": 0.0,
+    "max_tokens": 512
+  },
+  "response": {
+    "text": "```json\n{\n  \"primary_topic\": \"return\",\n  \"topics\": [\"return\", \"delay\"],\n  \"tracking_numbers\": [\"RET-00051\", \"BYL260473640\"]\n}\n```",
+    "model": "claude-haiku-4-5-20251001",
+    "finish_reason": "stop",
+    "input_tokens": 116,
+    "output_tokens": 54
+  },
+  "recorded_at": "2026-11-20T16:42:17Z",
+  "note": ""
+}

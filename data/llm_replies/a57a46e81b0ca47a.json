@@ -1,0 +1,27 @@
+{
+  "key": "a57a46e81b0ca47a",
+  "request": {
+    "model": "",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Return one JSON object only, with no code fences, with \"primary_topic\", \"topics\" and \"tracking_numbers\". Topics: status_question, delay, return, damage, address_change, claim_followup, billing, other. Return tracking numbers as a plain list of strings exactly as written in the message."
+      },
+      {
+        "role": "user",
+        "content": "Hello,\n\nIt's Tarek again. The jacket I got from Nile Loom (BYL260411871) is too big. The doorman had it in the end, sorry for the confusion last time.\n\nTwo things:\n- I'd like to return it. Nile Loom said they use Bayline Returns.\n- Do you have an office in Cairo where I can drop it off myself? I'm usually not home in the day, so a pick-up is difficult.\n\nThanks,\nTarek Sorour"
+      }
+    ],
+    "temperature": 0.0,
+    "max_tokens": 512
+  },
+  "response": {
+    "text": "```json\n{\n  \"primary_topic\": \"return\",\n  \"topics\": [\"return\", \"address_change\"],\n  \"tracking_numbers\": [\"BYL260411871\"]\n}\n```",
+    "model": "claude-haiku-4-5-20251001",
+    "finish_reason": "stop",
+    "input_tokens": 195,
+    "output_tokens": 49
+  },
+  "recorded_at": "2026-11-20T16:40:52Z",
+  "note": ""
+}

@@ -1,0 +1,27 @@
+{
+  "key": "c4e430711ca63eb4",
+  "request": {
+    "model": "",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Return one JSON object only, with no code fences, with \"primary_topic\", \"topics\" and \"tracking_numbers\". Topics: status_question, delay, return, damage, address_change, claim_followup, billing, other. Return tracking numbers as a plain list of strings exactly as written in the message."
+      },
+      {
+        "role": "user",
+        "content": "still nothing. what does customs want?? its been 2 days\n\n-----Original message-----\nFrom: Bayline Cargo Customer Service\nDate: Wednesday 28 October 2026\nSubject: Re: Your shipment BYL260467527\n\nHello Rania,\n\nYour shipment BYL260467527 is being held at customs in Riyadh. Customs checks can add days that we cannot control. We will write to you as soon as it moves.\n\nBayline Cargo Customer Service\n\n-----Original message-----\nFrom: Rania Aziz\nDate: Wednesday 28 October 2026\n\nWhere is my laptop? It was supposed to come today."
+      }
+    ],
+    "temperature": 0.0,
+    "max_tokens": 512
+  },
+  "response": {
+    "text": "```json\n{\n  \"primary_topic\": \"delay\",\n  \"topics\": [\"delay\", \"status_question\"],\n  \"tracking_numbers\": [\"BYL260467527\"]\n}\n```",
+    "model": "claude-haiku-4-5-20251001",
+    "finish_reason": "stop",
+    "input_tokens": 226,
+    "output_tokens": 49
+  },
+  "recorded_at": "2026-11-20T16:42:23Z",
+  "note": ""
+}

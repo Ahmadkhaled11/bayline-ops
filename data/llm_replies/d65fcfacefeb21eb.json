@@ -1,0 +1,27 @@
+{
+  "key": "d65fcfacefeb21eb",
+  "request": {
+    "model": "",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Return one JSON object only, with no code fences, with \"primary_topic\", \"topics\" and \"tracking_numbers\". Topics: status_question, delay, return, damage, address_change, claim_followup, billing, other. Return tracking numbers as a plain list of strings exactly as written in the message."
+      },
+      {
+        "role": "user",
+        "content": "Good morning,\n\nI ordered two shirts from Nile Loom and they told me the parcel left Alexandria on 12 October. It is now the 20th and I still have nothing in Mansoura. The tracking stopped updating days ago.\n\nI don't have the shop's email any more so I don't have the tracking number, sorry. You should have it under my name and email. Please tell me what is happening.\n\nEhab Morsi"
+      }
+    ],
+    "temperature": 0.0,
+    "max_tokens": 512
+  },
+  "response": {
+    "text": "```json\n{\n  \"primary_topic\": \"delay\",\n  \"topics\": [\"delay\", \"status_question\"],\n  \"tracking_numbers\": []\n}\n```",
+    "model": "claude-haiku-4-5-20251001",
+    "finish_reason": "stop",
+    "input_tokens": 176,
+    "output_tokens": 42
+  },
+  "recorded_at": "2026-11-20T16:41:00Z",
+  "note": ""
+}

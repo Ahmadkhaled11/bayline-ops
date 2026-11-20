@@ -1,0 +1,27 @@
+{
+  "key": "bee0f096e91adcf9",
+  "request": {
+    "model": "",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Return one JSON object only, with no code fences, with \"primary_topic\", \"topics\" and \"tracking_numbers\". Topics: status_question, delay, return, damage, address_change, claim_followup, billing, other. Return tracking numbers as a plain list of strings exactly as written in the message."
+      },
+      {
+        "role": "user",
+        "content": "Dear Sir or Madam,\n\nI now have the tracking number from the shop: BYL260470315. Your own tracking shows it left your hub on 14 October and then nothing. Thirteen days with no scan. It is obviously lost.\n\nThe shirts were declared at 1,200 EGP. I am claiming 1,200 EGP plus the shipping I paid. I have written to you twice already and received only \"we are checking\".\n\nIf this is not settled within a week, I will take Bayline Cargo to court. My cousin is a lawyer and has already offered to help me. I am not joking.\n\nEhab Morsi\nMansoura"
+      }
+    ],
+    "temperature": 0.0,
+    "max_tokens": 512
+  },
+  "response": {
+    "text": "```json\n{\n  \"primary_topic\": \"claim_followup\",\n  \"topics\": [\"delay\", \"claim_followup\"],\n  \"tracking_numbers\": [\"BYL260470315\"]\n}\n```",
+    "model": "claude-haiku-4-5-20251001",
+    "finish_reason": "stop",
+    "input_tokens": 228,
+    "output_tokens": 53
+  },
+  "recorded_at": "2026-11-20T16:42:22Z",
+  "note": ""
+}

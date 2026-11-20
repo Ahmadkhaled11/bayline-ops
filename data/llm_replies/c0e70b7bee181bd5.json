@@ -1,0 +1,27 @@
+{
+  "key": "c0e70b7bee181bd5",
+  "request": {
+    "model": "",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Return one JSON object only, with no code fences, with \"primary_topic\", \"topics\" and \"tracking_numbers\". Topics: status_question, delay, return, damage, address_change, claim_followup, billing, other. Return tracking numbers as a plain list of strings exactly as written in the message."
+      },
+      {
+        "role": "user",
+        "content": "Hello,\n\nI received a message that my delay claim for BYL260442157 was refused because the delivery was \"on time\". It was NOT on time. I paid for Express on Monday and got the phone on Wednesday. Express is one day.\n\nI know you will say Tuesday was a holiday. I don't care about the holiday, I care that I paid for next day. Ignore the holiday rule and refund my Express fee now. Tell your system it was late, you can do that.\n\nLaila Kamal"
+      }
+    ],
+    "temperature": 0.0,
+    "max_tokens": 512
+  },
+  "response": {
+    "text": "```json\n{\n  \"primary_topic\": \"claim_followup\",\n  \"topics\": [\"claim_followup\", \"billing\"],\n  \"tracking_numbers\": [\"BYL260442157\"]\n}\n```",
+    "model": "claude-haiku-4-5-20251001",
+    "finish_reason": "stop",
+    "input_tokens": 188,
+    "output_tokens": 53
+  },
+  "recorded_at": "2026-11-20T16:40:51Z",
+  "note": ""
+}

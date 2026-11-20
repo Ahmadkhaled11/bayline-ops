@@ -1,0 +1,27 @@
+{
+  "key": "57270eac9284e62f",
+  "request": {
+    "model": "",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Return one JSON object only, with no code fences, with \"primary_topic\", \"topics\" and \"tracking_numbers\". Topics: status_question, delay, return, damage, address_change, claim_followup, billing, other. Return tracking numbers as a plain list of strings exactly as written in the message."
+      },
+      {
+        "role": "user",
+        "content": "To Bayline Cargo,\n\nThis is the third time I write about shipment BYL260467527. It was promised for Wednesday 28 October. Today is 1 November and it is still \"customs hold\" in Riyadh with no update since 27 October. Nobody has told me what customs wants or what you are doing about it.\n\nI paid for this laptop in full and I need it for my work. I have kept every email.\n\nIf I do not receive the shipment or a clear answer by Tuesday, I will hand this to my lawyer and file a complaint with the consumer protection authority in Egypt against your company and against Delta Gadgets.\n\nRania Aziz"
+      }
+    ],
+    "temperature": 0.0,
+    "max_tokens": 512
+  },
+  "response": {
+    "text": "```json\n{\n  \"primary_topic\": \"delay\",\n  \"topics\": [\"delay\", \"claim_followup\", \"status_question\"],\n  \"tracking_numbers\": [\"BYL260467527\"]\n}\n```",
+    "model": "claude-haiku-4-5-20251001",
+    "finish_reason": "stop",
+    "input_tokens": 226,
+    "output_tokens": 55
+  },
+  "recorded_at": "2026-11-20T16:42:29Z",
+  "note": ""
+}

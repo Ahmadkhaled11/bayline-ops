@@ -1,0 +1,27 @@
+{
+  "key": "436c65d669dede9c",
+  "request": {
+    "model": "",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Return one JSON object only, with no code fences, with \"primary_topic\", \"topics\" and \"tracking_numbers\". Topics: status_question, delay, return, damage, address_change, claim_followup, billing, other. Return tracking numbers as a plain list of strings exactly as written in the message."
+      },
+      {
+        "role": "user",
+        "content": "Hello,\n\nI decided to return the smart watch after all, BYL260439062. It was delivered on 1 October, so today, 31 October, is day 30 and the last day of your 30 days. It is still 31 October in Cairo where your office is, so please accept the return today.\n\nI am sorry it is late in the evening. I only got home now.\n\nHassan Ibrahim"
+      }
+    ],
+    "temperature": 0.0,
+    "max_tokens": 512
+  },
+  "response": {
+    "text": "```json\n{\n  \"primary_topic\": \"return\",\n  \"topics\": [\"return\"],\n  \"tracking_numbers\": [\"BYL260439062\"]\n}\n```",
+    "model": "claude-haiku-4-5-20251001",
+    "finish_reason": "stop",
+    "input_tokens": 169,
+    "output_tokens": 44
+  },
+  "recorded_at": "2026-11-20T16:42:28Z",
+  "note": ""
+}

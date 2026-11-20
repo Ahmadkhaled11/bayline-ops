@@ -1,0 +1,27 @@
+{
+  "key": "511ad861910e7cce",
+  "request": {
+    "model": "",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Return one JSON object only, with no code fences, with \"primary_topic\", \"topics\" and \"tracking_numbers\". Topics: status_question, delay, return, damage, address_change, claim_followup, billing, other. Return tracking numbers as a plain list of strings exactly as written in the message."
+      },
+      {
+        "role": "user",
+        "content": "Hello,\n\nI opened a return for my dress from Nile Loom on 22 October, number RET-00051. Nothing has happened since then. Nobody came and nobody called.\n\nI would like to open a new return request so it goes through faster, tracking BYL260473640. I am well inside the 30 days, it was delivered on 20 October.\n\nPlease confirm today.\n\nDalia Samir"
+      }
+    ],
+    "temperature": 0.0,
+    "max_tokens": 512
+  },
+  "response": {
+    "text": "```json\n{\n  \"primary_topic\": \"return\",\n  \"topics\": [\"return\", \"delay\"],\n  \"tracking_numbers\": [\"RET-00051\", \"BYL260473640\"]\n}\n```",
+    "model": "claude-haiku-4-5-20251001",
+    "finish_reason": "stop",
+    "input_tokens": 172,
+    "output_tokens": 54
+  },
+  "recorded_at": "2026-11-20T16:42:21Z",
+  "note": ""
+}

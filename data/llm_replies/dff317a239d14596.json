@@ -1,0 +1,27 @@
+{
+  "key": "dff317a239d14596",
+  "request": {
+    "model": "",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Return one JSON object only, with no code fences, with \"primary_topic\", \"topics\" and \"tracking_numbers\". Topics: status_question, delay, return, damage, address_change, claim_followup, billing, other. Return tracking numbers as a plain list of strings exactly as written in the message."
+      },
+      {
+        "role": "user",
+        "content": "Hello,\n\nI got an SMS that my parcel from Nile Loom was delivered today, but I was at work and nobody at home has it. When I put the number in your tracking page it says the number is not valid. The number is BYL260411872, I copied it from the shop's email.\n\nCan you tell me who received it and where it was left?\n\nThanks,\nTarek"
+      }
+    ],
+    "temperature": 0.0,
+    "max_tokens": 512
+  },
+  "response": {
+    "text": "```json\n{\n  \"primary_topic\": \"delivery_issue\",\n  \"topics\": [\"status_question\", \"delivery_concern\"],\n  \"tracking_numbers\": [\"BYL260411872\"]\n}\n```",
+    "model": "claude-haiku-4-5-20251001",
+    "finish_reason": "stop",
+    "input_tokens": 166,
+    "output_tokens": 53
+  },
+  "recorded_at": "2026-11-20T16:40:47Z",
+  "note": ""
+}

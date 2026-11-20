@@ -1,0 +1,27 @@
+{
+  "key": "539646f6ccc53a5c",
+  "request": {
+    "model": "",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Return one JSON object only, with no code fences, with \"primary_topic\", \"topics\" and \"tracking_numbers\". Topics: status_question, delay, return, damage, address_change, claim_followup, billing, other. Return tracking numbers as a plain list of strings exactly as written in the message."
+      },
+      {
+        "role": "user",
+        "content": "hi again its youssef the giza thing didnt work ok fine then just tell me when it comes to cairo byl260464888 will it be tomorrow or tuesday i need to know if i stay home"
+      }
+    ],
+    "temperature": 0.0,
+    "max_tokens": 512
+  },
+  "response": {
+    "text": "```json\n{\n  \"primary_topic\": \"status_question\",\n  \"topics\": [\"status_question\", \"delay\"],\n  \"tracking_numbers\": [\"byl260464888\"]\n}\n```",
+    "model": "claude-haiku-4-5-20251001",
+    "finish_reason": "stop",
+    "input_tokens": 118,
+    "output_tokens": 49
+  },
+  "recorded_at": "2026-11-20T16:42:30Z",
+  "note": ""
+}

@@ -1,0 +1,27 @@
+{
+  "key": "8ae40a674d13c516",
+  "request": {
+    "model": "",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Return one JSON object only, with no code fences, with \"primary_topic\", \"topics\" and \"tracking_numbers\". Topics: status_question, delay, return, damage, address_change, claim_followup, billing, other. Return tracking numbers as a plain list of strings exactly as written in the message."
+      },
+      {
+        "role": "user",
+        "content": "Hello,\n\nI received a power bank from Delta Gadgets yesterday, BYL260451265. The front is badly scratched and one of the USB ports is loose, I attached two photos. I don't want money for it, I just want to send it back and get a new one from the shop.\n\nHow do I arrange the return? I am in Mansoura.\n\nSalma Youssef"
+      }
+    ],
+    "temperature": 0.0,
+    "max_tokens": 512
+  },
+  "response": {
+    "text": "```json\n{\n  \"primary_topic\": \"return\",\n  \"topics\": [\"return\", \"damage\"],\n  \"tracking_numbers\": [\"BYL260451265\"]\n}\n```",
+    "model": "claude-haiku-4-5-20251001",
+    "finish_reason": "stop",
+    "input_tokens": 165,
+    "output_tokens": 47
+  },
+  "recorded_at": "2026-11-20T16:42:14Z",
+  "note": ""
+}
