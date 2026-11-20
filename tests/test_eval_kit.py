@@ -61,10 +61,10 @@ def test_recovery_and_report(tmp_path):
     check_report(path, messages, labels(), parse, root=tmp_path)
     with pytest.raises(ValueError, match="already exists"):
         run_report("first", folder, messages, labels(), parse, factory, root=tmp_path)
-    path.write_text(original.replace("Overall: ", "Overall: 9"), encoding="utf-8")
+    path.write_text(original.replace("Overall: ", "Overall: 9"), encoding="utf-8", newline="\n")
     with pytest.raises(ValueError, match="contents differ"):
         check_report(path, messages, labels(), parse, root=tmp_path)
-    path.write_text(original, encoding="utf-8")
+    path.write_text(original, encoding="utf-8", newline="\n")
     files = sorted(folder.glob("*.json"))
     files[0].write_bytes(files[1].read_bytes())
     with pytest.raises(ValueError, match="Saved reply or request differs"):
