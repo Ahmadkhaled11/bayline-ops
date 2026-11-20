@@ -1,0 +1,6 @@
+* @bayline-cargo/customer-platform
+/docs/policies/ @bayline-cargo/support-ops
+/docs/handbook/ @bayline-cargo/support-ops
+/tests/ @bayline-cargo/qa
+/src/bayline/sample/ @bayline-cargo/qa
+/.github/ @bayline-cargo/customer-platform

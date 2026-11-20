@@ -1,0 +1,18 @@
+{
+  "key": "049d3b01bc3d2457",
+  "request": {
+    "model": "",
+    "messages": [{"role": "user", "content": "A second message."}],
+    "temperature": 0.0,
+    "max_tokens": 512
+  },
+  "response": {
+    "text": "The second saved response.",
+    "model": "recorded-model-name",
+    "finish_reason": "length",
+    "input_tokens": 15,
+    "output_tokens": 6
+  },
+  "recorded_at": "2026-11-15T10:00:00Z",
+  "note": "Client contract check."
+}
