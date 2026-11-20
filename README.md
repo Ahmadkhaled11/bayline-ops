@@ -67,6 +67,6 @@ Every command accepts `--db PATH` and `--json`. The database defaults to `BAYLIN
 | `docs` | Team notes and policies |
 | `var` | Local database files; not tracked |
 
-Policies live in `docs/policies`, owned by Customer Service. `BAYLINE_DOCS_DIR` can select another document root. The variables listed in `.env.example` are optional settings; the tool never loads a `.env` file. Model mode defaults to replay, which makes no network request. `llm-check` reports configuration without showing a key. Only an explicit `llm-check --ping` in live mode sends a small request.
+Policies live in `docs/policies`, owned by Customer Service. `BAYLINE_DOCS_DIR` can select another document root. The variables listed in `.env.example` are optional settings; the tool never loads a `.env` file. Model mode defaults to replay, which makes no network request. `llm-check` reports configuration without showing a key. Only an explicit `llm-check --ping` in live mode sends a small request. To set up your own model account, follow `docs/guides/setup.md`.
 
 The repository moved to GitHub in November 2026; earlier history stays on the old internal server.
