@@ -73,7 +73,7 @@ def test_refused_cases_have_the_same_decision_fields_as_tool_records(sample, tab
                 assert (actual.decision_code, actual.payable_piastres) == (row.decision_code, row.payable_piastres)
             assert (actual.opened_at, actual.decided_at, actual.decided_by, actual.status) == (
                 row.opened_at, row.decided_at, row.decided_by, row.status)
-            assert row.decided_by in ("karim.nassar", "dina.fawzy", "omar.elbanna")
+            assert row.decided_by in ("hany.nassar", "dina.fawzy", "omar.elbanna")
 
 
 @pytest.mark.parametrize("status,answer,next_step", [

@@ -41,13 +41,13 @@ def customer_phone(country, rng, used):
 
 
 STAFF = (
-    ("lina.haddad", "Lina Haddad", "Engineering lead", "customer_platform"),
+    ("karim.haddad", "Karim Haddad", "Engineering lead", "customer_platform"),
     ("yousef.darwish", "Yousef Darwish", "Senior engineer", "customer_platform"),
     ("sana.barakat", "Sana Barakat", "Staff engineer", "customer_platform"),
     ("mira.saad", "Mira Saad", "QA engineer", "customer_platform"),
     ("huda.al-mansoori", "Huda Al-Mansoori", "Head of Customer Service", "customer_service"),
     ("reem.adel", "Reem Adel", "Desk shift lead", "customer_service"),
-    ("karim.nassar", "Karim Nassar", "Desk agent", "customer_service"),
+    ("hany.nassar", "Hany Nassar", "Desk agent", "customer_service"),
     ("dina.fawzy", "Dina Fawzy", "Desk agent", "customer_service"),
     ("omar.elbanna", "Omar Elbanna", "Desk agent", "customer_service"),
 )

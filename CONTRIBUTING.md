@@ -14,4 +14,4 @@ Start each review comment with a label:
 
 The author answers every comment, including suggestions they decline. Squash merge after review and passing checks. Delete the branch after merging.
 
-Lina Haddad owns releases and the changelog. Yousef Darwish reviews the rules, database and client interface. Sana Barakat owns onboarding and the command-line and HTTP entry points. Mira Saad owns test and sample-data quality. Contact a teammate at `first.last@bayline.example` using their name; Huda's handle is `huda.al-mansoori@bayline.example`.
+Karim Haddad owns releases and the changelog. Yousef Darwish reviews the rules, database and client interface. Sana Barakat owns onboarding and the command-line and HTTP entry points. Mira Saad owns test and sample-data quality. Contact a teammate at `first.last@bayline.example` using their name; Huda's handle is `huda.al-mansoori@bayline.example`.

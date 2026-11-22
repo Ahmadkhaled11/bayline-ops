@@ -78,7 +78,7 @@ def test_shared_check_helpers_do_not_write(seeded_db):
 def test_empty_city_is_bad_input_in_both_desk_commands(seeded_db, capsys, command, city):
     args = [command, "BYL260462072", "--city", city, "--db", str(seeded_db)]
     if command == "change-address":
-        args.extend(["--line", "14 Oak Street", "--by", "karim.nassar"])
+        args.extend(["--line", "14 Oak Street", "--by", "hany.nassar"])
     with connect(seeded_db) as connection:
         before = connection.iterdump()
         original = list(before)
@@ -96,7 +96,7 @@ def test_empty_city_is_bad_input_in_both_desk_commands(seeded_db, capsys, comman
 def test_backdated_cli_writes_are_bad_input_and_leave_no_record(seeded_db, capsys, command, options):
     with connect(seeded_db) as connection:
         original = list(connection.iterdump())
-    assert cli.main([command, "BYL260448907", *options, "--by", "karim.nassar",
+    assert cli.main([command, "BYL260448907", *options, "--by", "hany.nassar",
                      "--at", "2026-10-17T10:00:00Z", "--db", str(seeded_db)]) == 2
     assert capsys.readouterr().out.strip() == (
         "The time given is earlier than the latest record for this shipment "

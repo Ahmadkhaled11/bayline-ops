@@ -101,7 +101,7 @@ That one says `TOO_LATE`: the parcel was already out for delivery.
 When the check says yes and the customer has given everything we need, record it. These write to the database, so check the tracking number twice:
 
 ```
-python -m bayline open-return BYL260411871 --reason not_wanted --by karim.nassar --at 2026-10-24T19:40:00Z
+python -m bayline open-return BYL260411871 --reason not_wanted --by hany.nassar --at 2026-10-24T19:40:00Z
 python -m bayline open-claim BYL260455803 --kind damage --amount 8500 --by dina.fawzy --at 2026-10-26T07:00:00Z
 python -m bayline change-address BYL260462072 --city Cairo --line "Building 12, Street 9, Flat 4" --by omar.elbanna --at 2026-10-31T12:00:00Z
 ```
@@ -111,7 +111,7 @@ If the rule refuses, the tool still writes the case as refused and exits with co
 Then send the reply and record it:
 
 ```
-python -m bayline reply M-01001 --by karim.nassar --body "..."
+python -m bayline reply M-01001 --by hany.nassar --body "..."
 ```
 
 The policies themselves are in the tool as well, if you want to quote the exact wording:

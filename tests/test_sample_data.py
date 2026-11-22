@@ -96,7 +96,7 @@ def test_stored_decisions(sample):
             fixed_claims[0].payable_piastres) == ("delay", "refused", "NOT_LATE_ENOUGH", 0)
     assert parse_utc("2026-10-07T12:00:00Z") < fixed_claims[0].opened_at == fixed_claims[0].decided_at
     assert parse_utc("2026-10-08T05:00:00Z") <= fixed_claims[0].decided_at < parse_utc("2026-10-08T09:10:00Z")
-    assert fixed_claims[0].decided_by in ("karim.nassar", "dina.fawzy", "omar.elbanna")
+    assert fixed_claims[0].decided_by in ("hany.nassar", "dina.fawzy", "omar.elbanna")
     anchor_cases = [r for r in sample.tables["return_cases"] if r.tracking_number in ANCHOR_NUMBERS]
     assert len(anchor_cases) == 1
     assert anchor_cases[0].tracking_number == "BYL260473640"

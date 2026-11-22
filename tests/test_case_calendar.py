@@ -50,7 +50,7 @@ def test_decisions_use_the_desk_calendar_and_follow_requests(sample):
             continue
         if row.status == "refused":
             assert row.decided_at == row.opened_at, row.id
-            assert row.decided_by in ("karim.nassar", "dina.fawzy", "omar.elbanna"), row.id
+            assert row.decided_by in ("hany.nassar", "dina.fawzy", "omar.elbanna"), row.id
             continue
         local = row.decided_at.astimezone(CAIRO)
         assert local.weekday() not in (4, 5), row.id

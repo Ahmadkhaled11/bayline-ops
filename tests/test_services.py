@@ -72,12 +72,12 @@ def test_transaction_rollback_on_second_write(writable_db):
 def test_reply_and_rollback(writable_db):
     conn = writable_db
     mid = "M-01001"
-    rid = services.record_reply(conn, mid, "karim.nassar", "Thank you. We have your message.", AS_OF)
+    rid = services.record_reply(conn, mid, "hany.nassar", "Thank you. We have your message.", AS_OF)
     assert repo.get_message(conn, mid).status == "answered"
     assert repo.get_replies(conn, mid)[-1].id == rid
     conn.execute("CREATE TRIGGER reject_message BEFORE UPDATE ON messages BEGIN SELECT RAISE(ABORT, 'message blocked'); END")
     with pytest.raises(sqlite3.IntegrityError):
-        services.record_reply(conn, "M-01002", "karim.nassar", "Thank you.", AS_OF)
+        services.record_reply(conn, "M-01002", "hany.nassar", "Thank you.", AS_OF)
     assert repo.get_replies(conn, "M-01002") == []
     assert repo.get_message(conn, "M-01002").status == "new"
 
@@ -85,8 +85,8 @@ def test_reply_and_rollback(writable_db):
 def test_bad_inputs_leave_no_rows(writable_db):
     conn = writable_db
     for author, body, time, error in [("unknown", "text", AS_OF, repo.NotFoundError),
-        ("karim.nassar", " ", AS_OF, ValueError),
-        ("karim.nassar", "text", parse_utc("2026-08-01T00:00:00Z"), ValueError)]:
+        ("hany.nassar", " ", AS_OF, ValueError),
+        ("hany.nassar", "text", parse_utc("2026-08-01T00:00:00Z"), ValueError)]:
         with pytest.raises(error):
             services.record_reply(conn, "M-01001", author, body, time)
     assert repo.get_replies(conn, "M-01001") == []
@@ -95,11 +95,11 @@ def test_bad_inputs_leave_no_rows(writable_db):
 def test_second_claim_cannot_precede_the_existing_claim(writable_db):
     conn = writable_db
     tn = "BYL260448907"
-    assert services.open_claim(conn, tn, "damage", 50000, "karim.nassar",
+    assert services.open_claim(conn, tn, "damage", 50000, "hany.nassar",
                                parse_utc("2026-11-01T10:00:00Z")).eligible
     before = conn.total_changes
     with pytest.raises(ValueError) as error:
-        services.open_claim(conn, tn, "damage", 50000, "karim.nassar",
+        services.open_claim(conn, tn, "damage", 50000, "hany.nassar",
                             parse_utc("2026-11-01T09:00:00Z"))
     assert str(error.value) == _earlier_time_message("2026-11-01T10:00:00Z")
     assert conn.total_changes == before
@@ -114,7 +114,7 @@ def test_address_change_cannot_precede_a_delivery(writable_db):
     events = repo.get_events(conn, tn)
     before = conn.total_changes
     with pytest.raises(ValueError) as error:
-        services.record_address_change(conn, tn, "Tanta", "14 Oak Street", "karim.nassar",
+        services.record_address_change(conn, tn, "Tanta", "14 Oak Street", "hany.nassar",
                                        parse_utc("2026-10-17T10:00:00Z"))
     assert str(error.value) == _earlier_time_message("2026-10-19T10:00:00Z")
     assert conn.total_changes == before
@@ -129,14 +129,14 @@ def test_write_at_the_latest_scan_is_allowed(writable_db, command):
     tn = "BYL260448907"
     at = parse_utc("2026-10-19T10:00:00Z")
     if command == "return":
-        assert services.open_return(conn, tn, "not_wanted", "karim.nassar", at).allowed
+        assert services.open_return(conn, tn, "not_wanted", "hany.nassar", at).allowed
         assert repo.get_returns(conn, tn)[-1].opened_at == at
     elif command == "claim":
-        assert services.open_claim(conn, tn, "damage", 50000, "karim.nassar", at).eligible
+        assert services.open_claim(conn, tn, "damage", 50000, "hany.nassar", at).eligible
         assert repo.get_claims(conn, tn)[-1].opened_at == at
     else:
         result = services.record_address_change(conn, tn, "Tanta", "14 Oak Street",
-                                                "karim.nassar", at)
+                                                "hany.nassar", at)
         assert result.reason == "TOO_LATE"
         assert repo.get_address_changes(conn, tn)[-1].requested_at == at
 
@@ -149,11 +149,11 @@ def test_write_cannot_precede_any_kind_of_case(writable_db, existing, command):
 
     def write(kind, at):
         if kind == "return":
-            return services.open_return(conn, tn, "not_wanted", "karim.nassar", at)
+            return services.open_return(conn, tn, "not_wanted", "hany.nassar", at)
         if kind == "claim":
-            return services.open_claim(conn, tn, "damage", 50000, "karim.nassar", at)
+            return services.open_claim(conn, tn, "damage", 50000, "hany.nassar", at)
         return services.record_address_change(conn, tn, "Tanta", "14 Oak Street",
-                                              "karim.nassar", at)
+                                              "hany.nassar", at)
 
     write(existing, parse_utc("2026-11-01T10:00:00Z"))
     before = conn.total_changes
@@ -167,8 +167,8 @@ def test_write_at_the_latest_case_time_is_allowed(writable_db):
     conn = writable_db
     tn = "BYL260448907"
     at = parse_utc("2026-11-01T10:00:00Z")
-    assert services.open_claim(conn, tn, "damage", 50000, "karim.nassar", at).eligible
-    result = services.open_claim(conn, tn, "damage", 50000, "karim.nassar", at)
+    assert services.open_claim(conn, tn, "damage", 50000, "hany.nassar", at).eligible
+    result = services.open_claim(conn, tn, "damage", 50000, "hany.nassar", at)
     assert result.reason == "ALREADY_EXISTS"
     assert [c.status for c in repo.get_claims(conn, tn)] == ["open", "refused"]
 
@@ -176,7 +176,7 @@ def test_write_at_the_latest_case_time_is_allowed(writable_db):
 def test_historical_read_checks_remain_available_after_a_later_record(writable_db):
     conn = writable_db
     tn = "BYL260448907"
-    assert services.open_claim(conn, tn, "damage", 50000, "karim.nassar",
+    assert services.open_claim(conn, tn, "damage", 50000, "hany.nassar",
                                parse_utc("2026-11-01T10:00:00Z")).eligible
     before = conn.total_changes
     at = parse_utc("2026-11-01T09:00:00Z")
@@ -189,14 +189,14 @@ def test_historical_read_checks_remain_available_after_a_later_record(writable_d
 def test_write_cannot_precede_a_recorded_case_decision(writable_db):
     conn = writable_db
     tn = "BYL260448907"
-    case_id, _ = services.open_claim(conn, tn, "damage", 50000, "karim.nassar",
+    case_id, _ = services.open_claim(conn, tn, "damage", 50000, "hany.nassar",
                                     parse_utc("2026-11-01T10:00:00Z"), include_id=True)
     conn.execute("UPDATE claims SET status = 'approved', decided_at = ?, decided_by = ? WHERE id = ?",
-                 ("2026-11-01T12:00:00Z", "karim.nassar", case_id))
+                 ("2026-11-01T12:00:00Z", "hany.nassar", case_id))
     conn.commit()
     before = conn.total_changes
     with pytest.raises(ValueError) as error:
-        services.open_return(conn, tn, "not_wanted", "karim.nassar",
+        services.open_return(conn, tn, "not_wanted", "hany.nassar",
                              parse_utc("2026-11-01T11:00:00Z"))
     assert str(error.value) == _earlier_time_message("2026-11-01T12:00:00Z")
     assert conn.total_changes == before

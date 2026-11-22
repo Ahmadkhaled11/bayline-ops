@@ -130,11 +130,11 @@ def test_refused_address_change_does_not_use_the_one_change_allowance():
 def test_backdated_return_cannot_open_a_second_case(regression_db):
     connection = regression_db
     tn = "BYL260411871"
-    assert services.open_return(connection, tn, "not_wanted", "karim.nassar",
+    assert services.open_return(connection, tn, "not_wanted", "hany.nassar",
                                 parse_utc("2026-10-24T19:40:00Z")).allowed
     before = connection.total_changes
     with pytest.raises(ValueError) as error:
-        services.open_return(connection, tn, "not_wanted", "karim.nassar",
+        services.open_return(connection, tn, "not_wanted", "hany.nassar",
                              parse_utc("2026-10-24T19:00:00Z"))
     assert str(error.value) == (
         "The time given is earlier than the latest record for this shipment "
@@ -148,12 +148,12 @@ def test_backdated_address_change_cannot_apply_a_second_change(regression_db):
     connection = regression_db
     tn = "BYL260462072"
     first_line = "Building 12, Street 9, Flat 4"
-    assert services.record_address_change(connection, tn, "Cairo", first_line, "karim.nassar",
+    assert services.record_address_change(connection, tn, "Cairo", first_line, "hany.nassar",
                                           parse_utc("2026-10-31T12:00:00Z")).allowed
     before = connection.total_changes
     with pytest.raises(ValueError) as error:
         services.record_address_change(connection, tn, "Cairo", "19 Sorrel Street",
-                                       "karim.nassar", parse_utc("2026-10-31T11:00:00Z"))
+                                       "hany.nassar", parse_utc("2026-10-31T11:00:00Z"))
     assert str(error.value) == (
         "The time given is earlier than the latest record for this shipment "
         "(2026-10-31T12:00:00Z). Check again at a time after it.")

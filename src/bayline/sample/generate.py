@@ -465,7 +465,7 @@ def generate(seed=20261101, authored_path: Path | None = None) -> SampleData:
             check=lambda at, s=s, d=d: check_return(s, events[s.tracking_number],
                 customer_map[s.merchant_id], [], at).reason == d.reason)
         author = None if status == "open" else rng.choice(
-            ("karim.nassar", "dina.fawzy", "omar.elbanna")) if status == "refused" else "reem.adel"
+            ("hany.nassar", "dina.fawzy", "omar.elbanna")) if status == "refused" else "reem.adel"
         tables["return_cases"].append(ReturnCase(f"RET-{len(tables['return_cases'])+1:05}", s.tracking_number,
             at, "other" if status == "refused" else "not_wanted", status, d.reason,
             at if status == "refused" else decided_at, author, "Return checked against the policy."))
@@ -514,7 +514,7 @@ def generate(seed=20261101, authored_path: Path | None = None) -> SampleData:
             and (kind != "loss" or when.astimezone(ZoneInfo("Africa/Cairo")).date() not in {
                 c.opened_at.astimezone(ZoneInfo("Africa/Cairo")).date()
                 for c in tables["claims"] if c.kind == "loss"}))
-        author = "reem.adel" if d.eligible else rng.choice(("karim.nassar", "dina.fawzy", "omar.elbanna"))
+        author = "reem.adel" if d.eligible else rng.choice(("hany.nassar", "dina.fawzy", "omar.elbanna"))
         tables["claims"].append(Claim(f"CLM-{len(tables['claims'])+1:05}", s.tracking_number, kind, at,
             amount, "approved" if d.eligible else "refused", d.reason, d.payable_piastres,
             decided_at if d.eligible else at, author, "Claim checked against the policy."))
@@ -535,7 +535,7 @@ def generate(seed=20261101, authored_path: Path | None = None) -> SampleData:
         city = s.destination_city if i < 6 else rng.choice([city for city in cities if city != s.destination_city])
         d = check_address_change(s, events[s.tracking_number], city, [], at)
         line = f"{rng.randint(2, 180)} {STREETS[i]}, Flat {rng.randint(1, 18)}"
-        author = rng.choice(("reem.adel", "karim.nassar", "dina.fawzy", "omar.elbanna"))
+        author = rng.choice(("reem.adel", "hany.nassar", "dina.fawzy", "omar.elbanna"))
         tables["address_changes"].append(AddressChange(f"ADR-{i+1:05}", s.tracking_number, at,
             city, line, "applied" if d.allowed else "refused", d.reason, author))
         change_days.add(day)
@@ -682,7 +682,7 @@ def generate(seed=20261101, authored_path: Path | None = None) -> SampleData:
         if invalid:
             invalid = [number.lower() if i in lower_case else number]
         email = f"contact{i}@example.org" if i in outsiders else customer.email
-        staff = rng.choice(("karim.nassar", "dina.fawzy", "omar.elbanna"))
+        staff = rng.choice(("hany.nassar", "dina.fawzy", "omar.elbanna"))
         msg = Message(f"M-{i+1:05}", at, rng.choice(("email", "web_form", "chat")), customer.name,
             email, None if i in outsiders else customer.id, topic.replace("_", " "), body, status,
             staff if status != "new" else None, "generated")

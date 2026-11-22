@@ -2,7 +2,7 @@
 
 Date: 2026-04-19
 Status: Accepted
-Decided by: Yousef Darwish and Lina Haddad
+Decided by: Yousef Darwish and Karim Haddad
 
 ## Context
 
