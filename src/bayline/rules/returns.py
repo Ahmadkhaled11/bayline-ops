@@ -1,12 +1,10 @@
 """Return checks count calendar days after delivery."""
 
 from datetime import timedelta
-from zoneinfo import ZoneInfo
 
 from ..models import ReturnDecision, ReturnReason
 from ..status import events_at
-
-ZONES = {"EG": "Africa/Cairo", "AE": "Asia/Dubai", "SA": "Asia/Riyadh", "JO": "Asia/Amman"}
+from ..timeutil import local_date
 
 
 def check_return(shipment, events, merchant, existing_returns, requested_at) -> ReturnDecision:
@@ -14,9 +12,8 @@ def check_return(shipment, events, merchant, existing_returns, requested_at) -> 
     day = None
     last = None
     if delivered:
-        zone = ZoneInfo(ZONES[shipment.destination_country])
-        delivery_date = delivered[-1].occurred_at.astimezone(zone).date()
-        day = (requested_at.astimezone(zone).date() - delivery_date).days
+        delivery_date = local_date(delivered[-1].occurred_at, shipment.destination_tz)
+        day = (local_date(requested_at, shipment.destination_tz) - delivery_date).days
         last = delivery_date + timedelta(days=30)
     if day is None or day < 0:
         reason = ReturnReason.NOT_DELIVERED
