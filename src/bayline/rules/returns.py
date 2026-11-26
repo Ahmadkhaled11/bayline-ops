@@ -4,7 +4,6 @@ from datetime import timedelta
 
 from ..models import ReturnDecision, ReturnReason
 from ..status import events_at
-from ..timeutil import local_date
 
 
 def check_return(shipment, events, merchant, existing_returns, requested_at) -> ReturnDecision:
@@ -12,8 +11,8 @@ def check_return(shipment, events, merchant, existing_returns, requested_at) -> 
     day = None
     last = None
     if delivered:
-        delivery_date = local_date(delivered[-1].occurred_at, shipment.destination_tz)
-        day = (local_date(requested_at, shipment.destination_tz) - delivery_date).days
+        delivery_date = delivered[-1].occurred_at.date()
+        day = (requested_at.date() - delivery_date).days
         last = delivery_date + timedelta(days=30)
     if day is None or day < 0:
         reason = ReturnReason.NOT_DELIVERED
